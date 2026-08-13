@@ -1,0 +1,133 @@
+"use client";
+
+import { useRef, useState } from "react";
+import { motion, useScroll, useSpring, AnimatePresence } from "framer-motion";
+import { LuChevronDown, LuCircleCheck } from "react-icons/lu";
+import { SectionHeading } from "@/components/ui/section-heading";
+import { Reveal } from "@/components/ui/reveal";
+import { experience, type Experience as ExperienceType } from "@/lib/data";
+
+function CompanyBadge({ name }: { name: string }) {
+  const initials = name
+    .split(/[\s-]+/)
+    .filter(Boolean)
+    .slice(0, 2)
+    .map((w) => w[0])
+    .join("")
+    .toUpperCase();
+  return (
+    <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg border border-line bg-bg font-display text-sm font-semibold text-ink">
+      {initials}
+    </div>
+  );
+}
+
+function ExperienceCard({ item, defaultOpen }: { item: ExperienceType; defaultOpen: boolean }) {
+  const [open, setOpen] = useState(defaultOpen);
+  return (
+    <div className="rounded-xl border border-line bg-bg-elevated">
+      <button
+        onClick={() => setOpen((o) => !o)}
+        aria-expanded={open}
+        className="flex w-full items-center gap-4 px-5 py-4 text-left cursor-pointer"
+      >
+        <CompanyBadge name={item.company} />
+        <div className="min-w-0 flex-1">
+          <div className="flex flex-wrap items-baseline gap-x-2">
+            <span className="font-display text-[15px] font-semibold text-ink">{item.role}</span>
+          </div>
+          <p className="truncate text-[13.5px] text-ink-muted">
+            {item.company}
+            {item.companyNote && <span className="text-ink-faint"> · {item.companyNote}</span>}
+          </p>
+        </div>
+        <span className="hidden shrink-0 font-display text-[12px] text-ink-faint sm:block">{item.period}</span>
+        <motion.span animate={{ rotate: open ? 180 : 0 }} className="shrink-0 text-ink-faint">
+          <LuChevronDown size={16} />
+        </motion.span>
+      </button>
+
+      <AnimatePresence initial={false}>
+        {open && (
+          <motion.div
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: "auto", opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            transition={{ duration: 0.25, ease: "easeInOut" }}
+            className="overflow-hidden"
+          >
+            <div className="border-t border-line-soft px-5 pb-5 pt-4">
+              <p className="text-[13px] text-ink-muted sm:hidden mb-3 font-display">{item.period}</p>
+              <p className="mb-4 text-[13.5px] text-ink-muted">{item.context}</p>
+              <ul className="mb-4 space-y-2.5">
+                {item.bullets.map((b, i) => (
+                  <li key={i} className="flex gap-2.5 text-[14px] text-ink">
+                    <LuCircleCheck size={16} className="mt-0.5 shrink-0 text-accent" aria-hidden />
+                    <span>{b}</span>
+                  </li>
+                ))}
+              </ul>
+              <div className="flex flex-wrap gap-1.5">
+                {item.tech.map((t) => (
+                  <span
+                    key={t}
+                    className="rounded-full border border-line bg-bg px-2.5 py-0.5 font-display text-[11px] text-ink-muted"
+                  >
+                    {t}
+                  </span>
+                ))}
+              </div>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </div>
+  );
+}
+
+export function ExperienceSection() {
+  const trackRef = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({ target: trackRef, offset: ["start 0.75", "end 0.4"] });
+  const lineScale = useSpring(scrollYProgress, { stiffness: 90, damping: 24 });
+
+  return (
+    <section id="experience" aria-labelledby="experience-heading" className="mx-auto max-w-5xl scroll-mt-24 px-5 py-20 md:px-8 md:py-28">
+      <Reveal>
+        <SectionHeading
+          title="Experience"
+          description="Read top to bottom like a build log — most recent run first."
+        />
+      </Reveal>
+
+      <div ref={trackRef} className="relative">
+        {/* rail */}
+        <div className="absolute left-[21px] top-2 bottom-2 w-px bg-line" aria-hidden />
+        <motion.div
+          className="absolute left-[21px] top-2 w-px origin-top bg-accent"
+          style={{ scaleY: lineScale, height: "calc(100% - 16px)" }}
+          aria-hidden
+        />
+
+        <ol className="space-y-8">
+          {experience.map((item, i) => (
+            <li key={item.id} className="relative pl-14">
+              <div className="absolute left-0 top-4 flex h-11 w-11 items-center justify-center">
+                <span className="relative flex h-3 w-3">
+                  <span
+                    className={`relative inline-flex h-3 w-3 rounded-full border-2 border-bg ${
+                      i === 0 ? "bg-accent" : "bg-ink-faint"
+                    }`}
+                  />
+                </span>
+              </div>
+              <Reveal direction={i % 2 === 0 ? "left" : "right"} delay={i * 0.05}>
+                <div className="mb-2 font-display text-[12px] text-ink-faint">{item.year}</div>
+                <ExperienceCard item={item} defaultOpen={i === 0} />
+              </Reveal>
+            </li>
+          ))}
+        </ol>
+      </div>
+    </section>
+  );
+}
