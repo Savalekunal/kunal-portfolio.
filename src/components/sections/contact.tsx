@@ -2,16 +2,7 @@
 
 import { useState, type FormEvent } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import {
-  LuMail,
-  LuLinkedin,
-  LuGithub,
-  LuInstagram,
-  LuSend,
-  LuCircleCheck,
-  LuCircleAlert,
-  LuLoaderCircle,
-} from "react-icons/lu";
+import { LuSend, LuCircleCheck, LuCircleAlert, LuLoaderCircle } from "react-icons/lu";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { Reveal } from "@/components/ui/reveal";
 import { profile } from "@/lib/data";
@@ -96,8 +87,8 @@ export function Contact() {
         />
       </Reveal>
 
-      <div className="grid grid-cols-1 gap-8 lg:grid-cols-[1.3fr_1fr]">
-        <Reveal direction="left">
+      <div className="mx-auto max-w-2xl">
+        <Reveal>
           <form onSubmit={handleSubmit} noValidate className="space-y-4" aria-describedby="form-status">
             <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
               <div>
@@ -232,58 +223,6 @@ export function Contact() {
               </AnimatePresence>
             </div>
           </form>
-        </Reveal>
-
-        <Reveal direction="right" delay={0.1}>
-          <div className="rounded-xl border border-line bg-bg-elevated p-5">
-            <span className="font-display text-[11px] uppercase tracking-wide text-ink-faint">
-              Direct channels
-            </span>
-            <ul className="mt-4 space-y-3">
-              <li>
-                <a
-                  href={`mailto:${profile.email}`}
-                  className="flex items-center gap-3 rounded-lg border border-line px-3.5 py-3 text-[13.5px] text-ink transition-colors hover:border-accent-line hover:text-accent"
-                >
-                  <LuMail size={16} aria-hidden />
-                  {profile.email}
-                </a>
-              </li>
-              <li>
-                <a
-                  href={profile.links.linkedin}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center gap-3 rounded-lg border border-line px-3.5 py-3 text-[13.5px] text-ink transition-colors hover:border-accent-line hover:text-accent"
-                >
-                  <LuLinkedin size={16} aria-hidden />
-                  {profile.links.linkedinLabel}
-                </a>
-              </li>
-              <li>
-                <a
-                  href={profile.links.github}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center gap-3 rounded-lg border border-line px-3.5 py-3 text-[13.5px] text-ink transition-colors hover:border-accent-line hover:text-accent"
-                >
-                  <LuGithub size={16} aria-hidden />
-                  {profile.links.githubLabel}
-                </a>
-              </li>
-              <li>
-                <a
-                  href={profile.links.instagram}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center gap-3 rounded-lg border border-line px-3.5 py-3 text-[13.5px] text-ink transition-colors hover:border-accent-line hover:text-accent"
-                >
-                  <LuInstagram size={16} aria-hidden />
-                  {profile.links.instagramLabel}
-                </a>
-              </li>
-            </ul>
-          </div>
         </Reveal>
       </div>
     </section>

@@ -12,6 +12,9 @@ import {
   SiGithub,
   SiKubernetes,
   SiMongodb,
+  SiRobotframework,
+  SiGooglecloud,
+  SiLinux,
 } from "react-icons/si";
 import {
   LuTestTubeDiagonal,
@@ -34,6 +37,8 @@ import {
   LuLanguages,
   LuEyeOff,
   LuCode,
+  LuCloud,
+  LuCloudCog,
 } from "react-icons/lu";
 
 export const skillIcons: Record<string, IconType> = {
@@ -54,6 +59,11 @@ export const skillIcons: Record<string, IconType> = {
   "CI/CD Pipeline Integration": LuWorkflow,
   Kubernetes: SiKubernetes,
   kubectl: LuContainer,
+  AWS: LuCloud,
+  Azure: LuCloudCog,
+  GCP: SiGooglecloud,
+  Linux: SiLinux,
+  "Robot Framework": SiRobotframework,
   SQL: LuDatabase,
   MongoDB: SiMongodb,
   Milvus: LuBoxes,

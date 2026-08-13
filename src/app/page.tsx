@@ -7,7 +7,6 @@ import { Skills } from "@/components/sections/skills";
 import { Projects } from "@/components/sections/projects";
 import { QaLab } from "@/components/sections/qa-lab";
 import { Achievements } from "@/components/sections/achievements";
-import { ResumeSection } from "@/components/sections/resume";
 import { Contact } from "@/components/sections/contact";
 import { Footer } from "@/components/footer";
 
@@ -23,7 +22,6 @@ export default function Home() {
         <Projects />
         <QaLab />
         <Achievements />
-        <ResumeSection />
         <Contact />
       </main>
       <Footer />

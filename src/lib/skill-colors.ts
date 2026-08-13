@@ -13,4 +13,6 @@ export const skillColors: Record<string, string> = {
   "Cucumber (BDD)": "#23D96C",
   Appium: "#EE376D",
   PyTest: "#0A9EDC",
+  GCP: "#4285F4",
+  Linux: "#FCC624",
 };

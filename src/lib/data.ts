@@ -100,7 +100,7 @@ export const skillCategories: SkillCategory[] = [
   {
     category: "Automation",
     description: "UI & framework-level automation",
-    items: ["Playwright", "Selenium WebDriver", "PyTest", "Cucumber (BDD)", "TestNG", "Appium"],
+    items: ["Playwright", "Selenium WebDriver", "PyTest", "Cucumber (BDD)", "TestNG", "Appium", "Robot Framework"],
   },
   {
     category: "Programming",
@@ -110,7 +110,7 @@ export const skillCategories: SkillCategory[] = [
   {
     category: "API",
     description: "Backend & service-layer testing",
-    items: ["Postman", "Requests", "REST API Testing"],
+    items: ["Postman"],
   },
   {
     category: "CI/CD",
@@ -119,8 +119,8 @@ export const skillCategories: SkillCategory[] = [
   },
   {
     category: "DevOps",
-    description: "Deployment & cluster validation",
-    items: ["Kubernetes", "kubectl"],
+    description: "Deployment, cloud & cluster validation",
+    items: ["Kubernetes", "AWS", "Azure", "GCP", "Linux"],
   },
   {
     category: "Database",
@@ -350,6 +350,5 @@ export const navSections = [
   { id: "projects", label: "Projects" },
   { id: "qa-lab", label: "QA Lab" },
   { id: "achievements", label: "Achievements" },
-  { id: "resume", label: "Resume" },
   { id: "contact", label: "Contact" },
 ];

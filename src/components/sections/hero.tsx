@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import Image from "next/image";
-import { LuArrowRight, LuDownload, LuMail, LuGithub, LuLinkedin, LuInstagram } from "react-icons/lu";
+import { LuArrowRight, LuDownload, LuMail } from "react-icons/lu";
 import { profile } from "@/lib/data";
 
 function scrollTo(id: string) {
@@ -115,36 +115,6 @@ export function Hero() {
               Contact Me
               <LuMail size={15} aria-hidden />
             </button>
-          </motion.div>
-
-          <motion.div variants={item} className="mt-7 flex items-center gap-3">
-            <a
-              href={profile.links.linkedin}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Kunal Savale on LinkedIn (opens in a new tab)"
-              className="flex h-10 w-10 items-center justify-center rounded-full border border-line bg-bg-elevated text-ink-muted transition-colors hover:text-accent hover:border-accent-line"
-            >
-              <LuLinkedin size={17} />
-            </a>
-            <a
-              href={profile.links.github}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Kunal Savale on GitHub (opens in a new tab)"
-              className="flex h-10 w-10 items-center justify-center rounded-full border border-line bg-bg-elevated text-ink-muted transition-colors hover:text-accent hover:border-accent-line"
-            >
-              <LuGithub size={17} />
-            </a>
-            <a
-              href={profile.links.instagram}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Kunal Savale on Instagram (opens in a new tab)"
-              className="flex h-10 w-10 items-center justify-center rounded-full border border-line bg-bg-elevated text-ink-muted transition-colors hover:text-accent hover:border-accent-line"
-            >
-              <LuInstagram size={17} />
-            </a>
           </motion.div>
         </motion.div>
       </div>
