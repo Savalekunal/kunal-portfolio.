@@ -4,7 +4,6 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 import { LuArrowRight, LuDownload, LuMail, LuGithub, LuLinkedin, LuInstagram } from "react-icons/lu";
 import { profile } from "@/lib/data";
-import { Hub } from "@/components/hub/hub";
 
 function scrollTo(id: string) {
   document.getElementById(id)?.scrollIntoView({ behavior: "smooth", block: "start" });
@@ -147,16 +146,6 @@ export function Hero() {
               <LuInstagram size={17} />
             </a>
           </motion.div>
-        </motion.div>
-
-        <motion.div
-          initial={{ opacity: 0, y: 24 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.9, ease: "easeOut" }}
-          className="mt-14 w-full"
-        >
-          <Hub />
-          <p className="mt-3 font-display text-[11px] text-ink-faint">click a node to jump to that section</p>
         </motion.div>
       </div>
     </section>
