@@ -152,11 +152,6 @@ function ExperienceCard({ item, defaultOpen }: { item: ExperienceType; defaultOp
                     {t}
                   </span>
                 ))}
-                {item.offeredReturn && (
-                  <span className="rounded-full border border-pass-line bg-pass-soft px-2.5 py-0.5 font-display text-[11px] text-pass">
-                    Offered Return
-                  </span>
-                )}
               </div>
               {item.photos && <PhotoCarousel photos={item.photos} alt={item.company} />}
             </div>

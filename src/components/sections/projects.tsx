@@ -5,7 +5,6 @@ import { ProjectCard } from "./project-card";
 import { GaiaArchitecture } from "./gaia-architecture";
 
 const gaia = projects.find((p) => p.featured)!;
-const others = projects.filter((p) => !p.featured);
 
 export function Projects() {
   return (
@@ -25,22 +24,13 @@ export function Projects() {
           </span>
         </div>
       </Reveal>
-      <div className="mb-16 grid grid-cols-1 gap-6 lg:grid-cols-[1fr_1fr] lg:items-stretch">
+      <div className="grid grid-cols-1 gap-6 lg:grid-cols-[1fr_1fr] lg:items-stretch">
         <Reveal direction="left">
           <ProjectCard project={gaia} />
         </Reveal>
         <Reveal direction="right" delay={0.1}>
           <GaiaArchitecture />
         </Reveal>
-      </div>
-
-      {/* remaining projects */}
-      <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
-        {others.map((p, i) => (
-          <Reveal key={p.id} direction={i % 2 === 0 ? "left" : "right"} delay={i * 0.06}>
-            <ProjectCard project={p} />
-          </Reveal>
-        ))}
       </div>
     </section>
   );

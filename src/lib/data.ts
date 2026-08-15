@@ -24,7 +24,7 @@ export const profile = {
     instagramIsPlaceholder: false,
   },
   resumePdf: "/Kunal_Savale_Resume.pdf",
-  photo: "/photo.jpg" as string | null,
+  photo: "/photo-v2.jpg" as string | null,
 };
 
 export type Experience = {
@@ -37,8 +37,6 @@ export type Experience = {
   context: string;
   bullets: string[];
   tech: string[];
-  /** Resume says "Offered Return" for this engagement. */
-  offeredReturn?: boolean;
   /** Optional photos — drop files into public/experience/ and point here. */
   photos?: string[];
 };
@@ -76,7 +74,6 @@ export const experience: Experience[] = [
       "Supported release readiness for web and Salesforce-connected platforms through functional testing, regression testing, defect tracking, and automation validation.",
     ],
     tech: ["Selenium", "Java", "Cucumber", "Salesforce"],
-    offeredReturn: true,
     photos: ["/experience/nexvant-1.jpg", "/experience/nexvant-2.jpg"],
   },
   {
@@ -91,7 +88,6 @@ export const experience: Experience[] = [
       "Automated end-to-end API and functional tests using Git and Jenkins-based CI/CD workflows, reducing manual QA effort by 70% and improving release quality.",
     ],
     tech: ["Python", "PyTest", "Selenium", "Jenkins", "Git"],
-    offeredReturn: true,
     photos: ["/experience/atos-1.jpg", "/experience/atos-2.jpg", "/experience/atos-3.jpg"],
   },
 ];
@@ -352,11 +348,6 @@ export const certifications: Credential[] = [
   { primary: "Azure Fundamentals", secondary: "Microsoft" },
 ];
 
-export const achievements: Credential[] = [
-  { primary: "Best Improved Performer of the Year", secondary: "Nexvant Solutions" },
-  { primary: "SAM+ Digital Platform delivered with zero major defects", secondary: "in production" },
-];
-
 export const navSections = [
   { id: "home", label: "Home" },
   { id: "about", label: "About" },
@@ -364,6 +355,6 @@ export const navSections = [
   { id: "skills", label: "Skills" },
   { id: "projects", label: "Projects" },
   { id: "qa-lab", label: "QA Lab" },
-  { id: "achievements", label: "Achievements" },
+  { id: "credentials", label: "Credentials" },
   { id: "contact", label: "Contact" },
 ];

@@ -61,7 +61,15 @@ export function Hero() {
           />
           <div className="relative h-full w-full overflow-hidden rounded-full border-4 border-bg bg-bg-inset shadow-xl">
             {profile.photo ? (
-              <Image src={profile.photo} alt={profile.name} fill sizes="192px" className="object-cover" priority />
+              <Image
+                src={profile.photo}
+                alt={profile.name}
+                fill
+                sizes="192px"
+                quality={95}
+                className="object-cover object-[center_18%]"
+                priority
+              />
             ) : (
               <div className="flex h-full w-full items-center justify-center bg-[radial-gradient(circle_at_50%_20%,var(--accent-soft),transparent_60%)]">
                 <span className="font-display text-5xl font-semibold text-ink-on-inset">{profile.initials}</span>
@@ -82,8 +90,13 @@ export function Hero() {
             {profile.tagline}
           </motion.p>
 
-          <motion.p variants={item} className="mt-3 text-[15px] text-ink-faint sm:text-base">
-            4+ Years QA Automation 🧪 · Open to SDET Roles
+          <motion.p variants={item} className="mt-3 text-[15px] text-ink sm:text-base">
+            🧪 · Open to QA Automation and SDET Roles
+          </motion.p>
+
+          <motion.p variants={item} className="mt-3 max-w-2xl text-[13px] leading-relaxed text-ink sm:text-[14px]">
+            QA Automation Engineer | SDET | 4+ Years | GenAI Testing | Python & Java | Selenium & Playwright | API
+            Automation | Web & Mobile | Database | Insurance & Salesforce | CI/CD | Building Scalable Test Automation
           </motion.p>
 
           <motion.div variants={item} className="mt-8">

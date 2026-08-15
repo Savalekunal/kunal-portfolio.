@@ -33,9 +33,7 @@ export function About() {
       <Reveal direction="left">
         <div className="space-y-4 text-[16px] leading-relaxed text-ink">
           {BIO_PARAGRAPHS.map((p, i) => (
-            <p key={i} className={i === 0 ? undefined : "text-ink-muted"}>
-              {p}
-            </p>
+            <p key={i}>{p}</p>
           ))}
           <div className="flex flex-wrap gap-2 pt-1">
             {TRAITS.map((trait) => (

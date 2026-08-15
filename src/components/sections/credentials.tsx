@@ -1,8 +1,8 @@
-import { LuGraduationCap, LuBadgeCheck, LuTrophy } from "react-icons/lu";
+import { LuGraduationCap, LuBadgeCheck } from "react-icons/lu";
 import type { IconType } from "react-icons";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { Reveal } from "@/components/ui/reveal";
-import { education, certifications, achievements, type Credential } from "@/lib/data";
+import { education, certifications, type Credential } from "@/lib/data";
 
 function CredGroup({
   title,
@@ -15,7 +15,7 @@ function CredGroup({
   icon: IconType;
   items: Credential[];
   delay: number;
-  direction: "left" | "right" | "up";
+  direction: "left" | "right";
 }) {
   return (
     <Reveal direction={direction} delay={delay}>
@@ -37,16 +37,15 @@ function CredGroup({
   );
 }
 
-export function Achievements() {
+export function Credentials() {
   return (
-    <section id="achievements" aria-labelledby="achievements-heading" className="mx-auto max-w-6xl scroll-mt-24 px-5 py-20 md:px-8 md:py-28">
+    <section id="credentials" aria-labelledby="credentials-heading" className="mx-auto max-w-6xl scroll-mt-24 px-5 py-20 md:px-8 md:py-28">
       <Reveal>
-        <SectionHeading title="Education & Achievements" />
+        <SectionHeading title="Education & Certifications" />
       </Reveal>
-      <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
+      <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
         <CredGroup title="Education" icon={LuGraduationCap} items={education} delay={0} direction="left" />
-        <CredGroup title="Certifications" icon={LuBadgeCheck} items={certifications} delay={0.06} direction="up" />
-        <CredGroup title="Achievements" icon={LuTrophy} items={achievements} delay={0.12} direction="right" />
+        <CredGroup title="Certifications" icon={LuBadgeCheck} items={certifications} delay={0.06} direction="right" />
       </div>
     </section>
   );
