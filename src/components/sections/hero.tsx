@@ -86,13 +86,6 @@ export function Hero() {
             4+ Years QA Automation 🧪 · Open to SDET Roles
           </motion.p>
 
-          <motion.div variants={item} className="mt-8 flex items-baseline gap-2.5">
-            <span className="font-display text-4xl font-bold tracking-tight text-ink sm:text-5xl">100%</span>
-            <span className="max-w-[10rem] text-left text-[13px] leading-tight text-ink-faint">
-              MCP / Copilot query accuracy, up from 46%
-            </span>
-          </motion.div>
-
           <motion.div variants={item} className="mt-8">
             <a
               href={profile.resumePdf}

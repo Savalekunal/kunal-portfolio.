@@ -61,6 +61,7 @@ export const experience: Experience[] = [
       "Mentored team members on automation best practices and contributed to test strategy and framework design discussions.",
     ],
     tech: ["Playwright", "Jenkins", "Git", "Kubernetes", "RBAC", "MCP", "GenAI"],
+    photos: ["/experience/cohesity-1.jpg", "/experience/cohesity-2.jpg", "/experience/cohesity-3.jpg"],
   },
   {
     id: "nexvant",
@@ -76,6 +77,7 @@ export const experience: Experience[] = [
     ],
     tech: ["Selenium", "Java", "Cucumber", "Salesforce"],
     offeredReturn: true,
+    photos: ["/experience/nexvant-1.jpg", "/experience/nexvant-2.jpg"],
   },
   {
     id: "atos-syntel",
@@ -90,6 +92,7 @@ export const experience: Experience[] = [
     ],
     tech: ["Python", "PyTest", "Selenium", "Jenkins", "Git"],
     offeredReturn: true,
+    photos: ["/experience/atos-1.jpg", "/experience/atos-2.jpg", "/experience/atos-3.jpg"],
   },
 ];
 

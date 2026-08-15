@@ -1,8 +1,8 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
-import { motion, useScroll, useSpring, AnimatePresence } from "framer-motion";
+import { motion, useScroll, useSpring, useReducedMotion, AnimatePresence } from "framer-motion";
 import { LuChevronDown, LuCircleCheck, LuChevronLeft, LuChevronRight } from "react-icons/lu";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { Reveal } from "@/components/ui/reveal";
@@ -10,10 +10,34 @@ import { experience, type Experience as ExperienceType } from "@/lib/data";
 
 function PhotoCarousel({ photos, alt }: { photos: string[]; alt: string }) {
   const [index, setIndex] = useState(0);
+  const [paused, setPaused] = useState(false);
+  const reducedMotion = useReducedMotion();
+
+  useEffect(() => {
+    if (photos.length <= 1 || paused || reducedMotion) return;
+    const id = setInterval(() => setIndex((i) => (i + 1) % photos.length), 3200);
+    return () => clearInterval(id);
+  }, [photos.length, paused, reducedMotion]);
+
   if (photos.length === 0) return null;
   return (
-    <div className="relative mt-4 aspect-video w-full overflow-hidden rounded-lg bg-bg-sunken">
-      <Image src={photos[index]} alt={`${alt} — photo ${index + 1}`} fill className="object-cover" />
+    <div
+      className="relative mt-4 aspect-video w-full overflow-hidden rounded-lg bg-bg-sunken"
+      onMouseEnter={() => setPaused(true)}
+      onMouseLeave={() => setPaused(false)}
+    >
+      <AnimatePresence initial={false} mode="wait">
+        <motion.div
+          key={index}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.4 }}
+          className="absolute inset-0"
+        >
+          <Image src={photos[index]} alt={`${alt} — photo ${index + 1}`} fill sizes="(max-width: 768px) 100vw, 640px" className="object-cover" />
+        </motion.div>
+      </AnimatePresence>
       {photos.length > 1 && (
         <>
           <button
@@ -23,7 +47,7 @@ function PhotoCarousel({ photos, alt }: { photos: string[]; alt: string }) {
               setIndex((i) => (i - 1 + photos.length) % photos.length);
             }}
             aria-label="Previous photo"
-            className="absolute left-2 top-1/2 flex h-8 w-8 -translate-y-1/2 items-center justify-center rounded-full bg-bg/80 text-ink backdrop-blur-sm cursor-pointer"
+            className="absolute left-2 top-1/2 z-10 flex h-8 w-8 -translate-y-1/2 items-center justify-center rounded-full bg-bg/80 text-ink backdrop-blur-sm cursor-pointer"
           >
             <LuChevronLeft size={16} />
           </button>
@@ -34,10 +58,18 @@ function PhotoCarousel({ photos, alt }: { photos: string[]; alt: string }) {
               setIndex((i) => (i + 1) % photos.length);
             }}
             aria-label="Next photo"
-            className="absolute right-2 top-1/2 flex h-8 w-8 -translate-y-1/2 items-center justify-center rounded-full bg-bg/80 text-ink backdrop-blur-sm cursor-pointer"
+            className="absolute right-2 top-1/2 z-10 flex h-8 w-8 -translate-y-1/2 items-center justify-center rounded-full bg-bg/80 text-ink backdrop-blur-sm cursor-pointer"
           >
             <LuChevronRight size={16} />
           </button>
+          <div className="absolute bottom-2 left-1/2 z-10 flex -translate-x-1/2 gap-1.5">
+            {photos.map((_, i) => (
+              <span
+                key={i}
+                className={`h-1.5 w-1.5 rounded-full transition-colors ${i === index ? "bg-accent" : "bg-bg/70"}`}
+              />
+            ))}
+          </div>
         </>
       )}
     </div>
