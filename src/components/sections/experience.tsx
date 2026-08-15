@@ -1,11 +1,48 @@
 "use client";
 
 import { useRef, useState } from "react";
+import Image from "next/image";
 import { motion, useScroll, useSpring, AnimatePresence } from "framer-motion";
-import { LuChevronDown, LuCircleCheck } from "react-icons/lu";
+import { LuChevronDown, LuCircleCheck, LuChevronLeft, LuChevronRight } from "react-icons/lu";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { Reveal } from "@/components/ui/reveal";
 import { experience, type Experience as ExperienceType } from "@/lib/data";
+
+function PhotoCarousel({ photos, alt }: { photos: string[]; alt: string }) {
+  const [index, setIndex] = useState(0);
+  if (photos.length === 0) return null;
+  return (
+    <div className="relative mt-4 aspect-video w-full overflow-hidden rounded-lg bg-bg-sunken">
+      <Image src={photos[index]} alt={`${alt} — photo ${index + 1}`} fill className="object-cover" />
+      {photos.length > 1 && (
+        <>
+          <button
+            type="button"
+            onClick={(e) => {
+              e.stopPropagation();
+              setIndex((i) => (i - 1 + photos.length) % photos.length);
+            }}
+            aria-label="Previous photo"
+            className="absolute left-2 top-1/2 flex h-8 w-8 -translate-y-1/2 items-center justify-center rounded-full bg-bg/80 text-ink backdrop-blur-sm cursor-pointer"
+          >
+            <LuChevronLeft size={16} />
+          </button>
+          <button
+            type="button"
+            onClick={(e) => {
+              e.stopPropagation();
+              setIndex((i) => (i + 1) % photos.length);
+            }}
+            aria-label="Next photo"
+            className="absolute right-2 top-1/2 flex h-8 w-8 -translate-y-1/2 items-center justify-center rounded-full bg-bg/80 text-ink backdrop-blur-sm cursor-pointer"
+          >
+            <LuChevronRight size={16} />
+          </button>
+        </>
+      )}
+    </div>
+  );
+}
 
 function CompanyBadge({ name }: { name: string }) {
   const initials = name
@@ -67,7 +104,7 @@ function ExperienceCard({ item, defaultOpen }: { item: ExperienceType; defaultOp
                   </li>
                 ))}
               </ul>
-              <div className="flex flex-wrap gap-1.5">
+              <div className="flex flex-wrap items-center gap-1.5">
                 {item.tech.map((t) => (
                   <span
                     key={t}
@@ -76,7 +113,13 @@ function ExperienceCard({ item, defaultOpen }: { item: ExperienceType; defaultOp
                     {t}
                   </span>
                 ))}
+                {item.offeredReturn && (
+                  <span className="rounded-full border border-pass-line bg-pass-soft px-2.5 py-0.5 font-display text-[11px] text-pass">
+                    Offered Return
+                  </span>
+                )}
               </div>
+              {item.photos && <PhotoCarousel photos={item.photos} alt={item.company} />}
             </div>
           </motion.div>
         )}

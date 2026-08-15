@@ -8,7 +8,7 @@ export const profile = {
   name: "Kunal Savale",
   initials: "KS",
   titleLine: "QA Automation Engineer | SDET",
-  tagline: "Breaking software before users do. Automating quality. Testing AI.",
+  tagline: "A good tester is a detective, and I am a detective.",
   intro:
     "4+ years of experience in QA automation, UI/API testing, CI/CD, and testing modern GenAI/RAG applications.",
   location: "India", // PLACEHOLDER — city not listed on resume
@@ -27,9 +27,6 @@ export const profile = {
   photo: "/photo.jpg" as string | null,
 };
 
-export const summary =
-  "QA Automation Engineer with 4+ years of experience in test automation, including hands-on experience with Playwright for designing, developing, and maintaining automation frameworks for web applications. Skilled in UI and API test coverage, Selenium WebDriver, PyTest, and Cucumber (BDD), with strong exposure to cross-browser testing and Jenkins-based CI/CD integration. Experienced in GenAI and RAG platform testing, including RBAC, audit logging, multilingual validation, semantic retrieval, query routing, and MCP integration testing. Strong analytical and communication skills with a proven record of improving test coverage, mentoring team members, and driving reliable, high-quality product releases.";
-
 export type Experience = {
   id: string;
   company: string;
@@ -40,6 +37,10 @@ export type Experience = {
   context: string;
   bullets: string[];
   tech: string[];
+  /** Resume says "Offered Return" for this engagement. */
+  offeredReturn?: boolean;
+  /** Optional photos — drop files into public/experience/ and point here. */
+  photos?: string[];
 };
 
 export const experience: Experience[] = [
@@ -74,6 +75,7 @@ export const experience: Experience[] = [
       "Supported release readiness for web and Salesforce-connected platforms through functional testing, regression testing, defect tracking, and automation validation.",
     ],
     tech: ["Selenium", "Java", "Cucumber", "Salesforce"],
+    offeredReturn: true,
   },
   {
     id: "atos-syntel",
@@ -87,6 +89,7 @@ export const experience: Experience[] = [
       "Automated end-to-end API and functional tests using Git and Jenkins-based CI/CD workflows, reducing manual QA effort by 70% and improving release quality.",
     ],
     tech: ["Python", "PyTest", "Selenium", "Jenkins", "Git"],
+    offeredReturn: true,
   },
 ];
 
@@ -157,6 +160,12 @@ export type ProjectDetail = {
   bullets: string[];
   keyResult: string;
   featured?: boolean;
+  /** Short emoji-tagged label shown on the card cover, e.g. "🚀 Enterprise GenAI". */
+  badge?: string;
+  /** Optional cover image — drop a file into public/projects/ and point here. */
+  image?: string;
+  /** Optional cover video (muted, loops on hover) — takes priority over `image` when set. */
+  video?: string;
 };
 
 export const projects: ProjectDetail[] = [
@@ -180,6 +189,7 @@ export const projects: ProjectDetail[] = [
     ],
     keyResult: "MCP query-routing accuracy improved from 46% to 100% across 81 structured test queries.",
     featured: true,
+    badge: "🚀 Enterprise GenAI",
   },
   {
     id: "sam-digital",
@@ -196,6 +206,7 @@ export const projects: ProjectDetail[] = [
       "Validated 20+ features and UI fixes, contributing to a 40% drop in UAT rework and smoother releases.",
     ],
     keyResult: "40% drop in UAT rework after validating 20+ features and UI fixes.",
+    badge: "💼 Digital Platform",
   },
   {
     id: "allstate",
@@ -212,6 +223,7 @@ export const projects: ProjectDetail[] = [
       "Applied SDLC and STLC knowledge to test planning, execution, bug reporting, and release support.",
     ],
     keyResult: "90% improvement in API test coverage.",
+    badge: "🚗 Insurance Domain",
   },
 ];
 

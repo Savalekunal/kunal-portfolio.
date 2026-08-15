@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import Image from "next/image";
-import { LuArrowRight, LuDownload, LuMail } from "react-icons/lu";
+import { LuDownload, LuMouse } from "react-icons/lu";
 import { profile } from "@/lib/data";
 
 function scrollTo(id: string) {
@@ -25,18 +25,27 @@ export function Hero() {
       aria-label="Introduction"
       className="relative flex min-h-[100svh] items-center overflow-hidden pt-28 pb-16"
     >
-      {/* backdrop: faint pipeline grid, evokes a dashboard/lab surface */}
-      <div
-        aria-hidden
-        className="pointer-events-none absolute inset-0 -z-10"
-        style={{
-          backgroundImage:
-            "linear-gradient(var(--line-soft) 1px, transparent 1px), linear-gradient(90deg, var(--line-soft) 1px, transparent 1px)",
-          backgroundSize: "46px 46px",
-          maskImage: "radial-gradient(ellipse 75% 60% at 50% 20%, #000 0%, transparent 75%)",
-          WebkitMaskImage: "radial-gradient(ellipse 75% 60% at 50% 20%, #000 0%, transparent 75%)",
-        }}
-      />
+      {/* backdrop: soft drifting aurora blobs on near-black, evokes the reference site's minimal glow */}
+      <div aria-hidden className="pointer-events-none absolute inset-0 -z-10 overflow-hidden">
+        <div
+          className="aurora-blob absolute -top-32 left-1/2 h-[560px] w-[560px] -translate-x-[65%] rounded-full opacity-30 blur-3xl"
+          style={{ background: "radial-gradient(circle, var(--accent) 0%, transparent 70%)" }}
+        />
+        <div
+          className="aurora-blob absolute -top-20 left-1/2 h-[520px] w-[520px] translate-x-[10%] rounded-full opacity-25 blur-3xl"
+          style={{ background: "radial-gradient(circle, var(--signal) 0%, transparent 70%)", animationDelay: "-6s" }}
+        />
+        <div
+          className="pointer-events-none absolute inset-0"
+          style={{
+            backgroundImage:
+              "linear-gradient(var(--line-soft) 1px, transparent 1px), linear-gradient(90deg, var(--line-soft) 1px, transparent 1px)",
+            backgroundSize: "46px 46px",
+            maskImage: "radial-gradient(ellipse 75% 60% at 50% 20%, #000 0%, transparent 75%)",
+            WebkitMaskImage: "radial-gradient(ellipse 75% 60% at 50% 20%, #000 0%, transparent 75%)",
+          }}
+        />
+      </div>
 
       <div className="mx-auto flex w-full max-w-4xl flex-col items-center px-5 text-center md:px-8">
         <motion.div
@@ -62,17 +71,6 @@ export function Hero() {
         </motion.div>
 
         <motion.div variants={container} initial="hidden" animate="show" className="flex flex-col items-center">
-          <motion.div
-            variants={item}
-            className="mb-6 inline-flex items-center gap-2 rounded-full border border-accent-line bg-accent-soft px-3 py-1.5 font-display text-[12px] text-accent"
-          >
-            <span className="relative flex h-1.5 w-1.5">
-              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-accent opacity-75 motion-reduce:animate-none" />
-              <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-accent" />
-            </span>
-            status: open to new SDET / QA automation roles
-          </motion.div>
-
           <motion.h1
             variants={item}
             className="font-display text-5xl font-bold tracking-tight text-balance sm:text-6xl lg:text-7xl"
@@ -80,26 +78,22 @@ export function Hero() {
             {profile.name}
           </motion.h1>
 
-          <motion.p variants={item} className="mt-4 font-display text-lg text-ink-muted sm:text-xl">
-            {profile.titleLine}
+          <motion.p variants={item} className="mt-4 max-w-xl text-lg text-ink-muted sm:text-xl">
+            {profile.tagline}
           </motion.p>
 
-          <motion.p variants={item} className="mt-2 max-w-xl text-[16px] italic text-ink-faint sm:text-lg">
-            &ldquo;{profile.tagline}&rdquo;
+          <motion.p variants={item} className="mt-3 text-[15px] text-ink-faint sm:text-base">
+            4+ Years QA Automation 🧪 · Open to SDET Roles
           </motion.p>
 
-          <motion.p variants={item} className="mt-6 max-w-xl text-[16px] leading-relaxed text-ink">
-            {profile.intro}
-          </motion.p>
+          <motion.div variants={item} className="mt-8 flex items-baseline gap-2.5">
+            <span className="font-display text-4xl font-bold tracking-tight text-ink sm:text-5xl">100%</span>
+            <span className="max-w-[10rem] text-left text-[13px] leading-tight text-ink-faint">
+              MCP / Copilot query accuracy, up from 46%
+            </span>
+          </motion.div>
 
-          <motion.div variants={item} className="mt-8 flex flex-wrap justify-center gap-3">
-            <button
-              onClick={() => scrollTo("projects")}
-              className="inline-flex items-center gap-2 rounded-lg bg-accent px-5 py-2.5 font-display text-sm font-medium text-accent-ink transition-transform hover:-translate-y-0.5 cursor-pointer"
-            >
-              View My Work
-              <LuArrowRight size={15} aria-hidden />
-            </button>
+          <motion.div variants={item} className="mt-8">
             <a
               href={profile.resumePdf}
               download
@@ -108,16 +102,26 @@ export function Hero() {
               Download Resume
               <LuDownload size={15} aria-hidden />
             </a>
-            <button
-              onClick={() => scrollTo("contact")}
-              className="inline-flex items-center gap-2 rounded-lg border border-line bg-bg-elevated px-5 py-2.5 font-display text-sm font-medium text-ink transition-colors hover:border-accent-line hover:text-accent cursor-pointer"
-            >
-              Contact Me
-              <LuMail size={15} aria-hidden />
-            </button>
           </motion.div>
         </motion.div>
       </div>
+
+      <motion.button
+        variants={item}
+        initial="hidden"
+        animate="show"
+        onClick={() => scrollTo("about")}
+        aria-label="Scroll to explore"
+        className="absolute bottom-8 left-1/2 -translate-x-1/2 text-ink-faint transition-colors hover:text-ink cursor-pointer"
+      >
+        <motion.span
+          animate={{ y: [0, 8, 0] }}
+          transition={{ duration: 1.8, repeat: Infinity, ease: "easeInOut" }}
+          className="block"
+        >
+          <LuMouse size={22} aria-hidden />
+        </motion.span>
+      </motion.button>
     </section>
   );
 }

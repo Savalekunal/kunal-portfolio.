@@ -1,11 +1,56 @@
 @import "tailwindcss";
 
 /* ------------------------------------------------------------------ */
-/* Design tokens — QA Engineering Command Center                       */
-/* Dark: the "lab" mode. Light: clean, recruiter-friendly.             */
+/* Design tokens — near-black, Geist-based, single accent             */
+/* Dark is the default identity (matches the reference site); light   */
+/* is an optional override via the toggle, not the primary look.      */
 /* ------------------------------------------------------------------ */
 
 :root {
+  --bg: #050505;
+  --bg-elevated: #0c0c0e;
+  --bg-sunken: #000000;
+  --bg-inset: #000000;
+  --ink: #f5f5f7;
+  --ink-on-inset: #f5f5f7;
+  --ink-muted: #9a9aa4;
+  --ink-faint: #67676f;
+
+  --accent: #5b8cff;
+  --accent-ink: #060710;
+  --accent-soft: rgba(91, 140, 255, 0.12);
+  --accent-line: rgba(91, 140, 255, 0.32);
+
+  /* Dedicated to literal test-result states (StatusBadge "passed", simulated test runs) —
+     kept green independently of the brand accent, since pass=green is a convention that
+     shouldn't shift just because the brand color did. */
+  --pass: #3fdd8f;
+  --pass-ink: #04180f;
+  --pass-soft: rgba(63, 221, 143, 0.12);
+  --pass-line: rgba(63, 221, 143, 0.32);
+
+  --signal: #a78bfa;
+  --signal-soft: rgba(167, 139, 250, 0.13);
+  --signal-line: rgba(167, 139, 250, 0.32);
+
+  --fail: #ff6b6b;
+  --fail-soft: rgba(255, 107, 107, 0.13);
+
+  --warn: #f2b73f;
+  --warn-soft: rgba(242, 183, 63, 0.13);
+
+  --line: rgba(245, 245, 247, 0.1);
+  --line-soft: rgba(245, 245, 247, 0.05);
+  --shadow: rgba(0, 0, 0, 0.6);
+
+  --font-display: var(--font-geist-sans);
+  --font-body: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+
+  color-scheme: dark;
+}
+
+.light {
   --bg: #f6f8f5;
   --bg-elevated: #ffffff;
   --bg-sunken: #eef2ee;
@@ -15,14 +60,11 @@
   --ink-muted: #56685e;
   --ink-faint: #8a9a90;
 
-  --accent: #e8590c;
+  --accent: #3862e0;
   --accent-ink: #ffffff;
-  --accent-soft: #fce7d9;
-  --accent-line: rgba(232, 89, 12, 0.35);
+  --accent-soft: #e4eaff;
+  --accent-line: rgba(56, 98, 224, 0.3);
 
-  /* Dedicated to literal test-result states (StatusBadge "passed", simulated test runs) —
-     kept green independently of the brand accent, since pass=green is a convention that
-     shouldn't shift just because the brand color did. */
   --pass: #16915c;
   --pass-ink: #ffffff;
   --pass-soft: #e2f4ea;
@@ -42,80 +84,34 @@
   --line-soft: rgba(18, 33, 26, 0.07);
   --shadow: rgba(16, 28, 22, 0.12);
 
-  --font-display: var(--font-jetbrains-mono);
-  --font-body: var(--font-public-sans);
-
   color-scheme: light;
 }
 
-/*
- * No JS runs before first paint, so the default (unclassed) theme follows the
- * OS preference purely via this media query — zero flash, zero hydration risk.
- * Once a visitor explicitly picks a theme, ThemeProvider stamps .dark/.light on
- * <html> (via useLayoutEffect, before the browser paints) which always wins.
- */
-@media (prefers-color-scheme: dark) {
-  :root:not(.light) {
-    --bg: #070c09;
-    --bg-elevated: #101a14;
-    --bg-sunken: #0b1310;
-    --bg-inset: #050908;
-    --ink: #e8f3ec;
-    --ink-on-inset: #d8f3e2;
-    --ink-muted: #8fa89a;
-    --ink-faint: #55695f;
-
-    --accent: #ff7a29;
-    --accent-ink: #1a0a02;
-    --accent-soft: rgba(255, 122, 41, 0.14);
-    --accent-line: rgba(255, 122, 41, 0.34);
-
-    --pass: #3fdd8f;
-    --pass-ink: #04180f;
-    --pass-soft: rgba(63, 221, 143, 0.12);
-    --pass-line: rgba(63, 221, 143, 0.32);
-
-    --signal: #a58bff;
-    --signal-soft: rgba(165, 139, 255, 0.13);
-    --signal-line: rgba(165, 139, 255, 0.32);
-
-    --fail: #ff6b6b;
-    --fail-soft: rgba(255, 107, 107, 0.13);
-
-    --warn: #f2b73f;
-    --warn-soft: rgba(242, 183, 63, 0.13);
-
-    --line: rgba(232, 243, 236, 0.12);
-    --line-soft: rgba(232, 243, 236, 0.06);
-    --shadow: rgba(0, 0, 0, 0.5);
-
-    color-scheme: dark;
-  }
-}
-
+/* .dark simply restates the default — present so an explicit class always wins
+   regardless of which theme the user is coming from. */
 .dark {
-  --bg: #070c09;
-  --bg-elevated: #101a14;
-  --bg-sunken: #0b1310;
-  --bg-inset: #050908;
-  --ink: #e8f3ec;
-  --ink-on-inset: #d8f3e2;
-  --ink-muted: #8fa89a;
-  --ink-faint: #55695f;
+  --bg: #050505;
+  --bg-elevated: #0c0c0e;
+  --bg-sunken: #000000;
+  --bg-inset: #000000;
+  --ink: #f5f5f7;
+  --ink-on-inset: #f5f5f7;
+  --ink-muted: #9a9aa4;
+  --ink-faint: #67676f;
 
-  --accent: #ff7a29;
-  --accent-ink: #1a0a02;
-  --accent-soft: rgba(255, 122, 41, 0.14);
-  --accent-line: rgba(255, 122, 41, 0.34);
+  --accent: #5b8cff;
+  --accent-ink: #060710;
+  --accent-soft: rgba(91, 140, 255, 0.12);
+  --accent-line: rgba(91, 140, 255, 0.32);
 
   --pass: #3fdd8f;
   --pass-ink: #04180f;
   --pass-soft: rgba(63, 221, 143, 0.12);
   --pass-line: rgba(63, 221, 143, 0.32);
 
-  --signal: #a58bff;
-  --signal-soft: rgba(165, 139, 255, 0.13);
-  --signal-line: rgba(165, 139, 255, 0.32);
+  --signal: #a78bfa;
+  --signal-soft: rgba(167, 139, 250, 0.13);
+  --signal-line: rgba(167, 139, 250, 0.32);
 
   --fail: #ff6b6b;
   --fail-soft: rgba(255, 107, 107, 0.13);
@@ -123,9 +119,9 @@
   --warn: #f2b73f;
   --warn-soft: rgba(242, 183, 63, 0.13);
 
-  --line: rgba(232, 243, 236, 0.12);
-  --line-soft: rgba(232, 243, 236, 0.06);
-  --shadow: rgba(0, 0, 0, 0.5);
+  --line: rgba(245, 245, 247, 0.1);
+  --line-soft: rgba(245, 245, 247, 0.05);
+  --shadow: rgba(0, 0, 0, 0.6);
 
   color-scheme: dark;
 }
@@ -155,6 +151,7 @@
   --color-line-soft: var(--line-soft);
   --font-display: var(--font-display);
   --font-body: var(--font-body);
+  --font-mono: var(--font-mono);
 }
 
 * {
@@ -183,7 +180,11 @@ body {
 }
 
 .font-display {
-  font-family: var(--font-display), ui-monospace, "Cascadia Code", Consolas, monospace;
+  font-family: var(--font-display), ui-sans-serif, -apple-system, "Segoe UI", sans-serif;
+}
+
+.font-mono {
+  font-family: var(--font-mono), ui-monospace, "Cascadia Code", Consolas, monospace;
 }
 
 .skip-link {
@@ -195,7 +196,7 @@ body {
   color: var(--accent-ink);
   padding: 12px 18px;
   border-radius: 8px;
-  font-family: var(--font-display), monospace;
+  font-family: var(--font-display), sans-serif;
   font-size: 14px;
 }
 .skip-link:focus {
@@ -230,6 +231,21 @@ body {
 }
 .marquee-track {
   animation: marquee-scroll var(--marquee-duration, 30s) linear infinite;
+}
+
+@keyframes aurora-drift {
+  0%, 100% {
+    transform: translate(0, 0) scale(1);
+  }
+  33% {
+    transform: translate(3%, -4%) scale(1.08);
+  }
+  66% {
+    transform: translate(-3%, 3%) scale(0.96);
+  }
+}
+.aurora-blob {
+  animation: aurora-drift 18s ease-in-out infinite;
 }
 
 /* thin scrollbars fit the console aesthetic without being heavy */

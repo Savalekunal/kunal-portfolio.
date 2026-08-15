@@ -1,15 +1,43 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 import { AnimatePresence, motion } from "framer-motion";
-import { LuChevronDown, LuBriefcase } from "react-icons/lu";
+import { LuChevronDown, LuBriefcase, LuLayoutTemplate } from "react-icons/lu";
 import type { ProjectDetail } from "@/lib/data";
 
 export function ProjectCard({ project }: { project: ProjectDetail }) {
   const [open, setOpen] = useState(false);
 
   return (
-    <div className="rounded-xl border border-line bg-bg-elevated">
+    <div className="group overflow-hidden rounded-xl border border-line bg-bg-elevated transition-colors hover:border-accent-line">
+      <div className="relative aspect-video w-full overflow-hidden bg-bg-sunken">
+        {project.video ? (
+          <video
+            src={project.video}
+            muted
+            loop
+            playsInline
+            autoPlay
+            className="h-full w-full object-cover"
+          />
+        ) : project.image ? (
+          <Image src={project.image} alt={project.name} fill className="object-cover transition-transform duration-500 group-hover:scale-105" />
+        ) : (
+          <div
+            className="flex h-full w-full items-center justify-center"
+            style={{ background: "linear-gradient(135deg, var(--accent-soft), var(--signal-soft))" }}
+          >
+            <LuLayoutTemplate size={30} className="text-ink-faint" aria-hidden />
+          </div>
+        )}
+        {project.badge && (
+          <span className="absolute left-3 top-3 rounded-full border border-line bg-bg/85 px-2.5 py-1 font-display text-[11px] text-ink backdrop-blur-sm">
+            {project.badge}
+          </span>
+        )}
+      </div>
+
       <div className="p-5 sm:p-6">
         <div className="mb-3 flex flex-wrap items-start justify-between gap-2">
           <h3 className="font-display text-[16px] font-semibold text-ink">{project.name}</h3>

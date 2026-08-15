@@ -3,7 +3,7 @@
 import { useEffect, useState, useCallback } from "react";
 import { motion, useScroll, useSpring } from "framer-motion";
 import { LuMenu, LuX } from "react-icons/lu";
-import { navSections } from "@/lib/data";
+import { navSections, profile } from "@/lib/data";
 import { ThemeToggle } from "@/components/theme-toggle";
 
 export function Nav() {
@@ -57,29 +57,29 @@ export function Nav() {
         >
           <button
             onClick={() => goTo("home")}
-            className="flex items-center gap-2 font-display text-sm font-medium tracking-tight cursor-pointer"
+            className="font-display text-[17px] font-semibold tracking-tight cursor-pointer text-ink"
             aria-label="Go to top"
           >
-            <span className="relative flex h-2.5 w-2.5">
-              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-accent opacity-60 motion-reduce:animate-none" />
-              <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-accent" />
-            </span>
-            kunal.savale<span className="text-accent">()</span>
+            {profile.name}
           </button>
 
-          <ul className="hidden lg:flex items-center gap-1 font-display text-[13px]">
+          <ul className="hidden lg:flex items-center gap-7 font-display text-[14px]">
             {navSections.map((s) => (
               <li key={s.id}>
                 <button
                   onClick={() => goTo(s.id)}
                   aria-current={active === s.id ? "true" : undefined}
-                  className={`rounded-md px-3 py-1.5 lowercase transition-colors cursor-pointer ${
-                    active === s.id
-                      ? "text-accent bg-accent-soft"
-                      : "text-ink-muted hover:text-ink"
+                  className={`relative py-1.5 transition-colors cursor-pointer ${
+                    active === s.id ? "text-ink" : "text-ink-muted hover:text-ink"
                   }`}
                 >
                   {s.label}
+                  {active === s.id && (
+                    <motion.span
+                      layoutId="nav-underline"
+                      className="absolute inset-x-0 -bottom-0.5 h-px bg-accent"
+                    />
+                  )}
                 </button>
               </li>
             ))}
@@ -107,7 +107,7 @@ export function Nav() {
               <li key={s.id}>
                 <button
                   onClick={() => goTo(s.id)}
-                  className={`block w-full rounded-md px-3 py-2 text-left lowercase transition-colors cursor-pointer ${
+                  className={`block w-full rounded-md px-3 py-2 text-left transition-colors cursor-pointer ${
                     active === s.id ? "text-accent bg-accent-soft" : "text-ink-muted"
                   }`}
                 >
