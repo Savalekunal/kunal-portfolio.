@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
-import { motion, useScroll, useSpring, useReducedMotion, AnimatePresence } from "framer-motion";
+import { motion, useScroll, useSpring, AnimatePresence } from "framer-motion";
 import { LuChevronDown, LuCircleCheck, LuChevronLeft, LuChevronRight } from "react-icons/lu";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { Reveal } from "@/components/ui/reveal";
@@ -11,13 +11,14 @@ import { experience, type Experience as ExperienceType } from "@/lib/data";
 function PhotoCarousel({ photos, alt }: { photos: string[]; alt: string }) {
   const [index, setIndex] = useState(0);
   const [paused, setPaused] = useState(false);
-  const reducedMotion = useReducedMotion();
 
+  // Deliberately plays regardless of prefers-reduced-motion — this is a requested
+  // always-on showcase feature, not a scroll-triggered animation.
   useEffect(() => {
-    if (photos.length <= 1 || paused || reducedMotion) return;
-    const id = setInterval(() => setIndex((i) => (i + 1) % photos.length), 1000);
+    if (photos.length <= 1 || paused) return;
+    const id = setInterval(() => setIndex((i) => (i + 1) % photos.length), 3000);
     return () => clearInterval(id);
-  }, [photos.length, paused, reducedMotion]);
+  }, [photos.length, paused]);
 
   if (photos.length === 0) return null;
   return (

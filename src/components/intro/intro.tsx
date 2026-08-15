@@ -12,15 +12,16 @@ export function Intro({ onComplete }: { onComplete: () => void }) {
   const [exiting, setExiting] = useState(false);
 
   useEffect(() => {
-    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     const alreadySeen = sessionStorage.getItem(SESSION_KEY) === "1";
-    // ?intro=1 always (re)plays it — handy if you want to rewatch it, or preview it while
-    // your OS has reduced-motion on.
+    // ?intro=1 always (re)plays it — handy if you want to rewatch it.
+    // This intro deliberately plays regardless of prefers-reduced-motion: it's a short,
+    // central showcase piece the site is built around, and a manual "Skip intro" control
+    // is always on screen for anyone who wants out immediately.
     const forcePlay = new URLSearchParams(window.location.search).get("intro") === "1";
-    // matchMedia/sessionStorage/URL params don't exist during SSR, so this can only be
-    // resolved here, once, on mount.
+    // sessionStorage/URL params don't exist during SSR, so this can only be resolved
+    // here, once, on mount.
     // eslint-disable-next-line react-hooks/set-state-in-effect
-    setShouldPlay(forcePlay || (!reduceMotion && !alreadySeen));
+    setShouldPlay(forcePlay || !alreadySeen);
   }, []);
 
   const timeline = useIntroTimeline(shouldPlay === true);

@@ -204,23 +204,6 @@ body {
   top: 16px;
 }
 
-@media (prefers-reduced-motion: reduce) {
-  html {
-    scroll-behavior: auto;
-  }
-  .decorative-motion {
-    display: none !important;
-  }
-  *,
-  *::before,
-  *::after {
-    animation-duration: 0.001ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.001ms !important;
-    scroll-behavior: auto !important;
-  }
-}
-
 @keyframes aurora-drift {
   0%, 100% {
     transform: translate(0, 0) scale(1);

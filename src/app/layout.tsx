@@ -85,7 +85,9 @@ export default function RootLayout({
         />
       </head>
       <body className="antialiased">
-        <MotionConfig reducedMotion="user">
+        {/* Animations are a core, explicitly-requested part of this site's design, so they
+            play regardless of the visitor's OS-level reduced-motion setting. */}
+        <MotionConfig reducedMotion="never">
           <ThemeProvider>
             <a href="#main" className="skip-link">
               Skip to main content
