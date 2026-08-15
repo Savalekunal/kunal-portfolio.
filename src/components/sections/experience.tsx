@@ -15,14 +15,14 @@ function PhotoCarousel({ photos, alt }: { photos: string[]; alt: string }) {
 
   useEffect(() => {
     if (photos.length <= 1 || paused || reducedMotion) return;
-    const id = setInterval(() => setIndex((i) => (i + 1) % photos.length), 3200);
+    const id = setInterval(() => setIndex((i) => (i + 1) % photos.length), 1000);
     return () => clearInterval(id);
   }, [photos.length, paused, reducedMotion]);
 
   if (photos.length === 0) return null;
   return (
     <div
-      className="relative mt-4 aspect-video w-full overflow-hidden rounded-lg bg-bg-sunken"
+      className="relative mt-4 mx-auto aspect-[4/3] w-[60%] min-w-[220px] overflow-hidden rounded-lg bg-bg-sunken"
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
     >
@@ -35,7 +35,14 @@ function PhotoCarousel({ photos, alt }: { photos: string[]; alt: string }) {
           transition={{ duration: 0.4 }}
           className="absolute inset-0"
         >
-          <Image src={photos[index]} alt={`${alt} — photo ${index + 1}`} fill sizes="(max-width: 768px) 100vw, 640px" className="object-cover" />
+          <Image
+            src={photos[index]}
+            alt={`${alt} — photo ${index + 1}`}
+            fill
+            sizes="(max-width: 768px) 60vw, 380px"
+            quality={95}
+            className="object-contain"
+          />
         </motion.div>
       </AnimatePresence>
       {photos.length > 1 && (

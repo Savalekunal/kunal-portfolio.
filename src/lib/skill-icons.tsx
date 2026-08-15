@@ -5,7 +5,6 @@ import {
   SiAppium,
   SiPytest,
   SiPython,
-  SiOpenjdk,
   SiPostman,
   SiJenkins,
   SiGit,
@@ -16,6 +15,7 @@ import {
   SiGooglecloud,
   SiLinux,
 } from "react-icons/si";
+import { FaJava, FaAws, FaMicrosoft } from "react-icons/fa6";
 import {
   LuTestTubeDiagonal,
   LuTestTube,
@@ -37,10 +37,13 @@ import {
   LuLanguages,
   LuEyeOff,
   LuCode,
-  LuCloud,
-  LuCloudCog,
 } from "react-icons/lu";
 
+// Playwright, TestNG, and "CI/CD" have no official brand mark in the icon libraries
+// available here (Simple Icons / Font Awesome) — they stay theme-adaptive generic icons
+// rather than a fabricated logo. Java uses Font Awesome's coffee-cup mark (Simple Icons
+// only has OpenJDK's duke/feather mark, not the classic Java logo). Azure has no available
+// mark either; Microsoft's general logo is used as the closest real substitute.
 export const skillIcons: Record<string, IconType> = {
   Playwright: LuTestTubeDiagonal,
   "Selenium WebDriver": SiSelenium,
@@ -49,7 +52,7 @@ export const skillIcons: Record<string, IconType> = {
   TestNG: LuTestTube,
   Appium: SiAppium,
   Python: SiPython,
-  Java: SiOpenjdk,
+  Java: FaJava,
   Postman: SiPostman,
   Requests: LuNetwork,
   "REST API Testing": LuRoute,
@@ -59,8 +62,8 @@ export const skillIcons: Record<string, IconType> = {
   "CI/CD Pipeline Integration": LuWorkflow,
   Kubernetes: SiKubernetes,
   kubectl: LuContainer,
-  AWS: LuCloud,
-  Azure: LuCloudCog,
+  AWS: FaAws,
+  Azure: FaMicrosoft,
   GCP: SiGooglecloud,
   Linux: SiLinux,
   "Robot Framework": SiRobotframework,

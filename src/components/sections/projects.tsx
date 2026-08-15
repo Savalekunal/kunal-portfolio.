@@ -1,6 +1,5 @@
 import { SectionHeading } from "@/components/ui/section-heading";
 import { Reveal } from "@/components/ui/reveal";
-import { Marquee } from "@/components/ui/marquee";
 import { projects } from "@/lib/data";
 import { ProjectCard } from "./project-card";
 import { GaiaArchitecture } from "./gaia-architecture";
@@ -35,16 +34,14 @@ export function Projects() {
         </Reveal>
       </div>
 
-      {/* remaining projects — infinite auto-scrolling carousel, pauses on hover so cards stay clickable */}
-      <Reveal>
-        <Marquee durationSeconds={others.length * 9}>
-          {others.map((p) => (
-            <div key={p.id} className="w-[340px] shrink-0 sm:w-[380px]">
-              <ProjectCard project={p} />
-            </div>
-          ))}
-        </Marquee>
-      </Reveal>
+      {/* remaining projects */}
+      <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
+        {others.map((p, i) => (
+          <Reveal key={p.id} direction={i % 2 === 0 ? "left" : "right"} delay={i * 0.06}>
+            <ProjectCard project={p} />
+          </Reveal>
+        ))}
+      </div>
     </section>
   );
 }

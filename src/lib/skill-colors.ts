@@ -1,7 +1,8 @@
-// Official brand colors (sourced from the Simple Icons data set) for tools that have a
-// genuine, recognizable brand color. Deliberately excluded: GitHub and Java/OpenJDK, whose
-// real brand marks are near-black and would be invisible or wrong-looking on a dark card —
-// those stay theme-adaptive instead of being forced into a color that isn't actually theirs.
+// Official brand colors for tools that have a genuine, recognizable brand color.
+// Deliberately excluded: GitHub, whose real brand mark is near-black and would be
+// invisible or wrong-looking on a dark card — stays theme-adaptive instead of being
+// forced into a color that isn't actually theirs. Azure/Microsoft is also excluded since
+// its icon here is the general four-color Microsoft mark, not a single-color Azure brand.
 export const skillColors: Record<string, string> = {
   "Selenium WebDriver": "#43B02A",
   Python: "#3776AB",
@@ -15,4 +16,6 @@ export const skillColors: Record<string, string> = {
   PyTest: "#0A9EDC",
   GCP: "#4285F4",
   Linux: "#FCC624",
+  Java: "#ED8B00",
+  AWS: "#FF9900",
 };
