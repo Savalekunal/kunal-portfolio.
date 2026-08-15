@@ -79,7 +79,7 @@ export function Contact() {
   }
 
   return (
-    <section id="contact" aria-labelledby="contact-heading" className="mx-auto max-w-5xl scroll-mt-24 px-5 py-20 md:px-8 md:py-28">
+    <section id="contact" aria-labelledby="contact-heading" className="mx-auto max-w-5xl scroll-mt-24 px-5 py-14 md:px-8 md:py-20">
       <Reveal>
         <SectionHeading
           title="Get in Touch"

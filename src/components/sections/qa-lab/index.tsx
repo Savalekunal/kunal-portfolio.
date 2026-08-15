@@ -19,7 +19,7 @@ export function QaLab() {
     <section
       id="qa-lab"
       aria-labelledby="qa-lab-heading"
-      className="scroll-mt-24 border-y border-line bg-bg-sunken/60 px-5 py-20 md:px-8 md:py-28"
+      className="scroll-mt-24 border-y border-line bg-bg-sunken/60 px-5 py-14 md:px-8 md:py-20"
     >
       <div className="mx-auto max-w-6xl">
         <Reveal>

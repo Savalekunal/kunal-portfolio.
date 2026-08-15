@@ -25,7 +25,7 @@ const BIO_PARAGRAPHS = [
 
 export function About() {
   return (
-    <section id="about" aria-labelledby="about-heading" className="mx-auto max-w-4xl scroll-mt-24 px-5 py-16 md:px-8 md:py-20">
+    <section id="about" aria-labelledby="about-heading" className="mx-auto max-w-4xl scroll-mt-24 px-5 py-12 md:px-8 md:py-14">
       <Reveal>
         <SectionHeading title="About" />
       </Reveal>

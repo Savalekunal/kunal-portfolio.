@@ -169,7 +169,7 @@ export function ExperienceSection() {
   const lineScale = useSpring(scrollYProgress, { stiffness: 90, damping: 24 });
 
   return (
-    <section id="experience" aria-labelledby="experience-heading" className="mx-auto max-w-5xl scroll-mt-24 px-5 py-20 md:px-8 md:py-28">
+    <section id="experience" aria-labelledby="experience-heading" className="mx-auto max-w-5xl scroll-mt-24 px-5 py-14 md:px-8 md:py-20">
       <Reveal>
         <SectionHeading
           title="Experience"

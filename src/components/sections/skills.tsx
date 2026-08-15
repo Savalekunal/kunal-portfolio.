@@ -11,7 +11,7 @@ import { skillColors } from "@/lib/skill-colors";
 
 export function Skills() {
   return (
-    <section id="skills" aria-labelledby="skills-heading" className="mx-auto max-w-4xl scroll-mt-24 px-5 py-20 md:px-8 md:py-28">
+    <section id="skills" aria-labelledby="skills-heading" className="mx-auto max-w-4xl scroll-mt-24 px-5 py-14 md:px-8 md:py-20">
       <Reveal>
         <SectionHeading
           title="Tech Stack"
